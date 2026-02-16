@@ -3,6 +3,29 @@
 #include <string>
 #include <vector>
 
+namespace Adventures
+{
+    enum adventureType
+    {
+        MOESEL,
+        TEXEL,
+        GREVELINGENPARK,
+        NATUURHUISJE
+    };
+
+    std::string ToString(adventureType eType)
+    {
+        switch (eType)
+        {
+        case MOESEL: return "Hotel aan de Moesel";
+        case TEXEL: return "BnB Texel";
+        case GREVELINGENPARK: return "Huisje Grevelingenpark";
+        case NATUURHUISJE: return "Natuurhuisje Nederland";
+        default: return "Unknown";
+        }
+    }
+}
+
 class AdventureWindow : public Gtk::Window {
 public:
     AdventureWindow() {
@@ -55,8 +78,8 @@ protected:
         }
     }
     
-    void show_outcome(const std::string& text) {
-        m_question_label.set_markup("<span size='xx-large'>Bestemming: " + text + "</span>");
+    void show_outcome(const Adventures::adventureType adventure) {
+        m_question_label.set_markup("<span size='xx-large'>Bestemming: " + Adventures::ToString(adventure) + "</span>");
 
         // Clear previous buttons
         while (auto child = m_button_box.get_first_child()) {
@@ -70,15 +93,15 @@ protected:
         } else if (answer == "Vaste land") {
             show_question("Sprechen zie ein biete deutch?", {"Aber naturlich", "Nein man"});
         } else if (answer == "Aber naturlich") {
-            show_outcome("Hotel aan de Moesel");
+            show_outcome(Adventures::MOESEL);
         } else if (answer == "Nein man") {
-            show_outcome("Natuurhuisje Nederland");
+            show_outcome(Adventures::NATUURHUISJE);
         } else if (answer == "Ik heb zeebenen") {
             show_question("Zin om een stukje te varen?", {"Ik wil wel varen", "Boten zijn niet mijn ding"});
         } else if (answer == "Ik wil wel varen") {
-            show_outcome("BnB Texel");
+            show_outcome(Adventures::TEXEL);
         } else if (answer == "Boten zijn niet mijn ding") {
-            show_outcome("Huisje Grevelingenpark");
+            show_outcome(Adventures::GREVELINGENPARK);
         }
 
         if (answer == "Nee") {
