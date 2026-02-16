@@ -62,21 +62,6 @@ protected:
         while (auto child = m_button_box.get_first_child()) {
             m_button_box.remove(*child);
         }
-
-        auto restart_button = Gtk::make_managed<Gtk::Button>("Opnieuw beginnen");
-        restart_button->set_margin(10);
-        restart_button->signal_clicked().connect([this]() {
-            show_question("Ga je mee op een avontuur?",
-                         {"Ja, ik ga graag op avontuur", "Nee"});
-        });
-        m_button_box.append(*restart_button);
-
-        auto exit_button = Gtk::make_managed<Gtk::Button>("Afsluiten");
-        exit_button->set_margin(10);
-        exit_button->signal_clicked().connect([this]() {
-            set_visible(false);
-        });
-        m_button_box.append(*exit_button);
     }
 
     void on_answer_clicked(const std::string& answer) {
@@ -85,24 +70,19 @@ protected:
         } else if (answer == "Vaste land") {
             show_question("Sprechen zie ein biete deutch?", {"Aber naturlich", "Nein man"});
         } else if (answer == "Aber naturlich") {
-            show_outcome("Duitsland");
+            show_outcome("Hotel aan de Moesel");
         } else if (answer == "Nein man") {
-            show_outcome("Wallonië");
+            show_outcome("Natuurhuisje Nederland");
         } else if (answer == "Ik heb zeebenen") {
-            show_question("The torch reveals a hidden path! Follow it?", {"Follow", "Stay put"});
-        } else if (answer == "Follow") {
-            show_outcome("The Caribbean");
-        } else if (answer == "Stay put") {
-            show_outcome("The Harbor");
-        } else if (answer == "Nee") {
-            set_visible(false);
-        } else {
-            show_question("The adventure continues...", {"Restart"});
+            show_question("Zin om een stukje te varen?", {"Ik wil wel varen", "Boten zijn niet mijn ding"});
+        } else if (answer == "Ik wil wel varen") {
+            show_outcome("BnB Texel");
+        } else if (answer == "Boten zijn niet mijn ding") {
+            show_outcome("Huisje Grevelingenpark");
         }
 
-        if (answer == "Restart") {
-            show_question("Ga je mee op een avontuur?",
-                         {"Ja, ik ga graag op avontuur", "Nee"});
+        if (answer == "Nee") {
+            exit(0);
         }
     }
 };
