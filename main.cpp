@@ -98,8 +98,9 @@ protected:
         }
 
         // Show picture
-        auto lpicture = Adventures::ToString(adventure) + ".png";
-        picture_box.append(*Gtk::make_managed<Gtk::Image>(Adventures::ToString(adventure) + ".png"));
+        auto lpicture = Gtk::make_managed<Gtk::Image>(Adventures::ToString(adventure) + ".png");
+        lpicture->set_pixel_size(600);
+        picture_box.append(*lpicture);
     }
 
     void on_answer_clicked(const std::string& answer) {
