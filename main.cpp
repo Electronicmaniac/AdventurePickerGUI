@@ -7,7 +7,7 @@ namespace Adventures
 {
     enum adventureType
     {
-        MOESEL,
+        MOEZEL,
         TEXEL,
         GREVELINGENPARK,
         NATUURHUISJE
@@ -17,7 +17,7 @@ namespace Adventures
     {
         switch (eType)
         {
-        case MOESEL: return "Hotel aan de Moesel";
+        case MOEZEL: return "Hotel aan de Moezel";
         case TEXEL: return "BnB Texel";
         case GREVELINGENPARK: return "Huisje Grevelingenstrand";
         case NATUURHUISJE: return "Natuurhuisje";
@@ -107,9 +107,9 @@ protected:
         if (answer == "Ja, ik ga graag op avontuur") {
             show_question("Heb je zeebenen of reis je liever over het vaste land?", {"Vaste land", "Ik heb zeebenen"});
         } else if (answer == "Vaste land") {
-            show_question("Sprechen zie ein biete deutch?", {"Aber naturlich", "Nein man"});
-        } else if (answer == "Aber naturlich") {
-            show_outcome(Adventures::MOESEL);
+            show_question("Sprechen Sie ein bisschen Deutsch?", {"Aber natürlich", "Nein man"});
+        } else if (answer == "Aber natürlich") {
+            show_outcome(Adventures::MOEZEL);
         } else if (answer == "Nein man") {
             show_question("Huisje in een park of een losstaand huisje?", {"Park", "Losstaand huisje"});
         } else if (answer == "Park") {
