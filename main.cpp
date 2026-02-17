@@ -20,7 +20,7 @@ namespace Adventures
         case MOESEL: return "Hotel aan de Moesel";
         case TEXEL: return "BnB Texel";
         case GREVELINGENPARK: return "Huisje Grevelingenpark";
-        case NATUURHUISJE: return "Natuurhuisje Nederland";
+        case NATUURHUISJE: return "Natuurhuisje";
         default: return "Unknown";
         }
     }
@@ -47,6 +47,11 @@ public:
         m_button_box.set_halign(Gtk::Align::CENTER);
         m_main_box.append(m_button_box);
 
+        // Setup the picture box for avatars
+        picture_box.set_spacing(10);
+        picture_box.set_halign(Gtk::Align::CENTER);
+        m_main_box.append(picture_box);
+
         set_child(m_main_box);
 
         // Start with the first question
@@ -58,6 +63,7 @@ protected:
     Gtk::Box m_main_box;
     Gtk::Label m_question_label;
     Gtk::Box m_button_box;
+    Gtk::Box picture_box;
 
     void show_question(const std::string& text, const std::vector<std::string>& options) {
         m_question_label.set_markup("<span size='xx-large'>" + text + "</span>");
@@ -85,6 +91,15 @@ protected:
         while (auto child = m_button_box.get_first_child()) {
             m_button_box.remove(*child);
         }
+
+        // Clear previous images
+        while (auto child = picture_box.get_first_child()) {
+            picture_box.remove(*child);
+        }
+
+        // Show picture
+        auto lpicture = Adventures::ToString(adventure) + ".png";
+        picture_box.append(*Gtk::make_managed<Gtk::Image>(Adventures::ToString(adventure) + ".png"));
     }
 
     void on_answer_clicked(const std::string& answer) {

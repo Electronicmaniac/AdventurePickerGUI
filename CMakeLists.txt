@@ -8,3 +8,6 @@ pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
 
 add_executable(adventurePicker main.cpp)
 target_link_libraries(adventurePicker PkgConfig::GTKMM)
+
+file(GLOB PNG_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.png")
+file(COPY ${PNG_FILES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
