@@ -19,7 +19,7 @@ namespace Adventures
         {
         case MOESEL: return "Hotel aan de Moesel";
         case TEXEL: return "BnB Texel";
-        case GREVELINGENPARK: return "Huisje Grevelingenpark";
+        case GREVELINGENPARK: return "Huisje Grevelingenstrand";
         case NATUURHUISJE: return "Natuurhuisje";
         default: return "Unknown";
         }
@@ -111,13 +111,17 @@ protected:
         } else if (answer == "Aber naturlich") {
             show_outcome(Adventures::MOESEL);
         } else if (answer == "Nein man") {
+            show_question("Huisje in een park of een losstaand huisje?", {"Park", "Losstaand huisje"});
+        } else if (answer == "Park") {
+            show_outcome(Adventures::GREVELINGENPARK);
+        } else if (answer == "Losstaand huisje") {
             show_outcome(Adventures::NATUURHUISJE);
         } else if (answer == "Ik heb zeebenen") {
             show_question("Zin om een stukje te varen?", {"Ik wil wel varen", "Boten zijn niet mijn ding"});
         } else if (answer == "Ik wil wel varen") {
             show_outcome(Adventures::TEXEL);
         } else if (answer == "Boten zijn niet mijn ding") {
-            show_outcome(Adventures::GREVELINGENPARK);
+            show_outcome(Adventures::TEXEL);
         }
 
         if (answer == "Nee") {
