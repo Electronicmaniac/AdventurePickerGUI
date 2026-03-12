@@ -32,6 +32,22 @@ public:
         set_title("Adventure Picker");
         fullscreen();
 
+        auto css_provider = Gtk::CssProvider::create();
+        css_provider->load_from_data(
+            "button.my-green-button {"
+            "  background-color: #2ecc71;" // Bright Tree Green
+            "  color: white;"
+            "  background-image: none;"
+            "  border-radius: 8px;"
+            "}"
+            "button.my-green-button:hover {"
+            "  background-color: #27ae60;" // Darker Green on hover
+            "}"
+        );
+
+        Gtk::StyleContext::add_provider_for_display(
+    Gdk::Display::get_default(), css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+
         // Setup the main layout container (vertical box)
         m_main_box.set_orientation(Gtk::Orientation::VERTICAL);
         m_main_box.set_spacing(20);
@@ -76,6 +92,7 @@ protected:
         // Add new buttons for each option
         for (const auto& option : options) {
             auto button = Gtk::make_managed<Gtk::Button>(option);
+            button->add_css_class("my-green-button");
             button->set_margin(10);
             button->signal_clicked().connect([this, option]() {
                 on_answer_clicked(option);
