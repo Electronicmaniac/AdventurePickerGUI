@@ -9,6 +9,10 @@ namespace Adventures
     {
         MOEZEL,
         TEXEL,
+        VLIELAND,
+        TERSCHELLING,
+        AMERONGEN,
+        SCHIERMONNIKOOG,
         GREVELINGENPARK,
         NATUURHUISJE
     };
@@ -19,6 +23,10 @@ namespace Adventures
         {
         case MOEZEL: return "Hotel aan de Moezel";
         case TEXEL: return "BnB Texel";
+        case VLIELAND: return "BnB Vlieland";
+        case TERSCHELLING: return "BnB Terschelling";
+        case AMERONGEN: return "BnB Amerongen";
+        case SCHIERMONNIKOOG: return "BnB Schiermonnikoog";
         case GREVELINGENPARK: return "Huisje Grevelingenstrand";
         case NATUURHUISJE: return "Natuurhuisje";
         default: return "Unknown";
@@ -122,8 +130,8 @@ protected:
 
     void on_answer_clicked(const std::string& answer) {
         if (answer == "Ja, ik ga graag op avontuur") {
-            show_question("Heb je zeebenen of reis je liever over het vaste land?", {"Vaste land", "Ik heb zeebenen"});
-        } else if (answer == "Vaste land") {
+            show_question("Heb je zeebenen of reis je liever over het vaste land?", {"Boten zijn niet mijn ding", "Ik heb zeebenen"});
+        } else if (answer == "Boten zijn niet mijn ding") {
             show_question("Sprechen Sie ein bisschen Deutsch?", {"Aber natürlich", "Nein man"});
         } else if (answer == "Aber natürlich") {
             show_outcome(Adventures::MOEZEL);
@@ -134,11 +142,17 @@ protected:
         } else if (answer == "Losstaand huisje") {
             show_outcome(Adventures::NATUURHUISJE);
         } else if (answer == "Ik heb zeebenen") {
-            show_question("Zin om een stukje te varen?", {"Ik wil wel varen", "Boten zijn niet mijn ding"});
-        } else if (answer == "Ik wil wel varen") {
+            show_question("TVTAS?", {" T ", "V ", "T ", "A ", "S "});
+        } else if (answer == " T ") {
             show_outcome(Adventures::TEXEL);
-        } else if (answer == "Boten zijn niet mijn ding") {
-            show_outcome(Adventures::TEXEL);
+        } else if (answer == "V ") {
+            show_outcome(Adventures::VLIELAND);
+        } else if (answer == "T ") {
+            show_outcome(Adventures::TERSCHELLING);
+        } else if (answer == "A ") {
+            show_outcome(Adventures::AMERONGEN);
+        } else if (answer == "S ") {
+            show_outcome(Adventures::SCHIERMONNIKOOG);
         }
 
         if (answer == "Nee") {
