@@ -11,7 +11,7 @@ namespace Adventures
         TEXEL,
         VLIELAND,
         TERSCHELLING,
-        AMERONGEN,
+        AMELAND,
         SCHIERMONNIKOOG,
         GREVELINGENPARK,
         NATUURHUISJE
@@ -25,7 +25,7 @@ namespace Adventures
         case TEXEL: return "BnB Texel";
         case VLIELAND: return "BnB Vlieland";
         case TERSCHELLING: return "BnB Terschelling";
-        case AMERONGEN: return "BnB Amerongen";
+        case AMELAND: return "BnB AMELAND";
         case SCHIERMONNIKOOG: return "BnB Schiermonnikoog";
         case GREVELINGENPARK: return "Huisje Grevelingenstrand";
         case NATUURHUISJE: return "Natuurhuisje";
@@ -150,7 +150,7 @@ protected:
         } else if (answer == "T ") {
             show_outcome(Adventures::TERSCHELLING);
         } else if (answer == "A ") {
-            show_outcome(Adventures::AMERONGEN);
+            show_outcome(Adventures::AMELAND);
         } else if (answer == "S ") {
             show_outcome(Adventures::SCHIERMONNIKOOG);
         }
